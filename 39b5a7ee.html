@@ -43,7 +43,14 @@
          Uart
      </button>
  </div>
-
+<div class="bar-footer" style="bottom:0;position:absolute;width:100%">
+     <div class="item item-input-inset">
+     <font color="#FF0000">Brightness:</font>  
+       <label class="item-input-wrapper">
+         <input type="text" placeholder="message" id="Bright">
+     </label>
+     
+ </div>
  <div class="button-bar">
      <a class="button" style="background:red; color:white" id="led_red">Red</a>
      <a class="button" style="background:green; color:white" id="led_green">Green</a>
@@ -131,6 +138,7 @@
 
         // 串口数据发送部分
         var inputMessage = document.getElementById('message');
+        var inputBright = document.getElementById('Bright');
         // 将消息发送到指定的通道
         function send2uart() {
             if ( inputMessage.value.length == 0 ) return;
@@ -161,7 +169,10 @@
 
         function led_red() {
             var topic = device_id+'/in/write';
-            var commond = '{"rgbled_switch":true,"rgbled_hues":0, "rgbled_saturation":100, "rgbled_brightness":100}'; 
+            if(inputBright.value.length == 0)
+              var commond = '{"rgbled_switch":true,"rgbled_hues":0, "rgbled_saturation":100, "rgbled_brightness":100}'; 
+            else
+              var commond = '{"rgbled_switch":true,"rgbled_hues":0, "rgbled_saturation":100, "rgbled_brightness":' + inputBright.value + '}';  
             client.publish(topic, commond);
         }
         // document.querySelector('#led_red').addEventListener('touchstart', led_red);
@@ -169,7 +180,10 @@
 
         function led_green() {
             var topic = device_id+'/in/write';
-            var commond = '{"rgbled_switch":true,"rgbled_hues":120, "rgbled_saturation":100, "rgbled_brightness":100}'; 
+            if(inputBright.value.length == 0)
+              var commond = '{"rgbled_switch":true,"rgbled_hues":120, "rgbled_saturation":100, "rgbled_brightness":100}'; 
+            else
+              var commond = '{"rgbled_switch":true,"rgbled_hues":120, "rgbled_saturation":100, "rgbled_brightness":' + inputBright.value + '}';  
             client.publish(topic, commond);
         }
         // document.querySelector('#led_green').addEventListener('touchstart', led_green);
@@ -177,7 +191,10 @@
 
         function led_blue() {
             var topic = device_id+'/in/write';
-            var commond = '{"rgbled_switch":true,"rgbled_hues":240, "rgbled_saturation":100, "rgbled_brightness":100}'; 
+            if(inputBright.value.length == 0)
+              var commond = '{"rgbled_switch":true,"rgbled_hues":240, "rgbled_saturation":100, "rgbled_brightness":100}'; 
+            else
+              var commond = '{"rgbled_switch":true,"rgbled_hues":240, "rgbled_saturation":100, "rgbled_brightness":' + inputBright.value + '}';  
             client.publish(topic, commond);
         }
         // document.querySelector('#led_blue').addEventListener('touchstart', led_blue);
