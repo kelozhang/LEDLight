@@ -70,7 +70,7 @@
 <body>
     <div class="content">
         <div class="title">
-          <span>温湿度实时检测</span>
+          <span>温湿度实时监测</span>
         </div>        
         <div class="temphumishow">
             <table width="100%" height="94px">
@@ -180,10 +180,10 @@
                 // 显示湿度
                 $("#humiid").text(msgjson.dht11_humidity+'%');
                 // 温度超过29则红灯亮，20-29之间则绿灯亮，低于20黄灯亮
-                if(tempval > "29"){
+                if(tempval > "32"){
                     led_red();
                     $("#rgbimgid").attr("src", "./image/02-red.svg");
-                }else if(tempval < "30" && (tempval > "19")){
+                }else if(tempval < "33" && (tempval > "19")){
                     led_green();
                     $("#rgbimgid").attr("src", "./image/02-green.svg");
                 }else if(tempval < "20"){
