@@ -136,9 +136,9 @@
         // wsport:端口 默认1983
         // Client-ID ： v1_web_[MAC]  //版本号_app_手机MAC(必须是12位小写)
         var wsbroker = "api.easylink.io";  //mqtt websocket enabled broker
-        var wsport = 1983 // port for above
+        var wsport = 1983; // port for above
         var client = new Paho.MQTT.Client(wsbroker, wsport, "v1-web-" + parseInt(Math.random() * 1000000, 12));
-
+        var curTemp = 0;
         // 基本参数配置
         // 连接丢失所对应的callback函数
         client.onConnectionLost = onConnectionLost;
@@ -183,6 +183,7 @@
             msgjson = $.parseJSON(message.payloadString);
             // console.log('温度 ' +  msgjson.dht11_temperature);
             var tempval = msgjson.dht11_temperature;
+            curTemp = tempval;
             // console.log('温度2 ' +  tempval);
             if("undefined" != typeof(tempval)){
                 // 显示温度
@@ -207,7 +208,12 @@
         $("#rgbimgid1").click(function() {
             var topic = device_id+'/in';
             var commond;
-            commond = '{"tempPlus":false}';
+            var t;
+            if(curTemp>30)
+                t = curTemp - 1;
+            else
+                t = 30;
+            commond = '{"setTemperature":' + t + '}';
             client.publish(topic, commond);
         });
 
@@ -215,7 +221,12 @@
         $("#rgbimgid2").click(function() {
             var topic = device_id+'/in';
             var commond;
-            commond = '{"tempPlus":true}';
+            var t;
+            if(curTemp<75)
+                t = curTemp + 1;
+            else
+                t = 75;
+            commond = '{"setTemperature":' + t + '}';
             client.publish(topic, commond);
         });
 
