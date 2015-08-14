@@ -207,7 +207,7 @@
         $("#rgbimgid1").click(function() {
             var topic = device_id+'/in';
             var commond;
-            commond = '{"tempAC":true}';
+            commond = '{"tempPlus":false}';
             client.publish(topic, commond);
         });
 
@@ -215,7 +215,7 @@
         $("#rgbimgid2").click(function() {
             var topic = device_id+'/in';
             var commond;
-            commond = '{"tempDC":true}';
+            commond = '{"tempPlus":true}';
             client.publish(topic, commond);
         });
 
