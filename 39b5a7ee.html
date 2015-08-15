@@ -192,16 +192,16 @@
                 $("#humiid").text(msgjson.dht11_humidity+'℃');
               //  setTemp = msgjson.dht11_humidity;
                 // 温度超过29则红灯亮，20-29之间则绿灯亮，低于20黄灯亮
-                if(tempval > "32"){
-                    led_red();
-                    $("#dcimgid").attr("src", "./image/02-red.svg");
-                }else if(tempval < "33" && (tempval > "19")){
-                    led_green();
-                    $("#dcimgid").attr("src", "./image/02-green.svg");
-                }else if(tempval < "20"){
-                    led_yellow();
-                    $("#dcimgid").attr("src", "./image/02-yellow.svg");
-                }
+               // if(tempval > "32"){
+               //     led_red();
+               //     $("#dcimgid").attr("src", "./image/02-red.svg");
+               // }else if(tempval < "33" && (tempval > "19")){
+               //     led_green();
+               //     $("#dcimgid").attr("src", "./image/02-green.svg");
+               // }else if(tempval < "20"){
+               //     led_yellow();
+               //     $("#dcimgid").attr("src", "./image/02-yellow.svg");
+               // }
             }
         }
 
