@@ -183,6 +183,7 @@
             msgjson = $.parseJSON(message.payloadString);
             // console.log('温度 ' +  msgjson.dht11_temperature);
             var tempval = msgjson.dht11_temperature;
+            var onoff = msgjson.device_onoff;
             
             // console.log('温度2 ' +  tempval);
             if("undefined" != typeof(tempval)){
@@ -190,7 +191,17 @@
                 $("#tempid").text(tempval+"℃");
                 // 显示湿度
                 $("#humiid").text(msgjson.dht11_humidity+'℃');
-              //  setTemp = msgjson.dht11_humidity;
+                if(onoff)
+                {
+                   $("#switchbtn").attr("src", "./image/03-turn-on.svg");
+                   $("#switchspan").text("开");     
+                }
+                else
+                {
+                    $("#switchbtn").attr("src", "./image/03-turn-off.svg");
+                    $("#switchspan").text("关");
+                }
+                setTemp = msgjson.dht11_humidity;
                 // 温度超过29则红灯亮，20-29之间则绿灯亮，低于20黄灯亮
                // if(tempval > "32"){
                //     led_red();
