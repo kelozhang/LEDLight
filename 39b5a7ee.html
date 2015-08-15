@@ -209,12 +209,12 @@
         $("#rgbimgid1").click(function() {
             var topic = device_id+'/in';
             var commond;
-            var t;
+           // var t;
             //if(setTemp > "30")
             //    t = setTemp - 1;
             //else
-                t = "30";
-            commond = '{"setTemperature":' + t + '}';
+             //   t = "30";
+            commond = '{"setTemperature":32}';
             client.publish(topic, commond);
         });
 
@@ -222,13 +222,13 @@
         $("#rgbimgid2").click(function() {
             var topic = device_id+'/in';
             var commond;
-            var t;
+          //  var t;
           //  if(setTemp < "75")
           //      t = setTemp + 1;
           //  else
           //      t = "75";
-            t = "75"; 
-            commond = '{"setTemperature":' + t + '}';
+          //  t = "75"; 
+            commond = '{"setTemperature":68}';
             client.publish(topic, commond);
         });
 
