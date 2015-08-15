@@ -213,8 +213,8 @@
             //if(setTemp > "30")
             //    t = setTemp - 1;
             //else
-             //   t = "30";
-            commond = '{"setTemperature":32}';
+                t = "30";
+            commond = '{"setTemperature":' + t + '}';
             client.publish(topic, commond);
         });
 
@@ -227,8 +227,8 @@
           //      t = setTemp + 1;
           //  else
           //      t = "75";
-          //  t = "75"; 
-            commond = '{"setTemperature":68}';
+            t = "75"; 
+            commond = '{"setTemperature":' + t + '}';
             client.publish(topic, commond);
         });
 
