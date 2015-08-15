@@ -138,7 +138,7 @@
         var wsbroker = "api.easylink.io";  //mqtt websocket enabled broker
         var wsport = 1983; // port for above
         var client = new Paho.MQTT.Client(wsbroker, wsport, "v1-web-" + parseInt(Math.random() * 1000000, 12));
-        var curTemp = 0;
+        var setTemp = 0;
         // 基本参数配置
         // 连接丢失所对应的callback函数
         client.onConnectionLost = onConnectionLost;
@@ -183,7 +183,7 @@
             msgjson = $.parseJSON(message.payloadString);
             // console.log('温度 ' +  msgjson.dht11_temperature);
             var tempval = msgjson.dht11_temperature;
-            curTemp = tempval;
+            setTemp = msgjson.dht11_humidity;
             // console.log('温度2 ' +  tempval);
             if("undefined" != typeof(tempval)){
                 // 显示温度
@@ -209,8 +209,8 @@
             var topic = device_id+'/in';
             var commond;
             var t;
-            if(curTemp>30)
-                t = curTemp - 1;
+            if(setTemp>30)
+                t = setTemp - 1;
             else
                 t = 30;
             commond = '{"setTemperature":' + t + '}';
@@ -222,8 +222,8 @@
             var topic = device_id+'/in';
             var commond;
             var t;
-            if(curTemp<75)
-                t = curTemp + 1;
+            if(setTemp<75)
+                t = setTemp + 1;
             else
                 t = 75;
             commond = '{"setTemperature":' + t + '}';
