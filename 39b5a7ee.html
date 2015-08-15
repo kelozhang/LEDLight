@@ -210,9 +210,9 @@
             var topic = device_id+'/in';
             var commond;
             var t;
-            if(setTemp > "30")
-                t = setTemp - 1;
-            else
+            //if(setTemp > "30")
+            //    t = setTemp - 1;
+            //else
                 t = "30";
             commond = '{"setTemperature":' + t + '}';
             client.publish(topic, commond);
@@ -227,15 +227,6 @@
           //      t = setTemp + 1;
           //  else
           //      t = "75";
-          if(setTemp < 30)
-            t = "30";
-          else if(setTemp < 45)
-            t = "45";
-          else if(setTemp < 55)
-            t = "55";
-          else if(setTemp < 65)
-            t = "65";
-          else 
             t = "75"; 
             commond = '{"setTemperature":' + t + '}';
             client.publish(topic, commond);
