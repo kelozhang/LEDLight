@@ -190,7 +190,7 @@
                 $("#tempid").text(tempval+"℃");
                 // 显示湿度
                 $("#humiid").text(msgjson.dht11_humidity+'℃');
-                setTemp = msgjson.dht11_humidity;
+              //  setTemp = msgjson.dht11_humidity;
                 // 温度超过29则红灯亮，20-29之间则绿灯亮，低于20黄灯亮
                 if(tempval > "32"){
                     led_red();
@@ -223,10 +223,20 @@
             var topic = device_id+'/in';
             var commond;
             var t;
-            if(setTemp < "75")
-                t = setTemp + 1;
-            else
-                t = "75";
+          //  if(setTemp < "75")
+          //      t = setTemp + 1;
+          //  else
+          //      t = "75";
+          if(setTemp < "30")
+            t = "30";
+          else if(setTemp < "45")
+            t = "45";
+          else if(setTemp < "55")
+            t = "55";
+          else if(setTemp < "65")
+            t = "65";
+          else 
+            t = "75"; 
             commond = '{"setTemperature":' + t + '}';
             client.publish(topic, commond);
         });
